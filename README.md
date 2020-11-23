@@ -1,7 +1,7 @@
 # PKU-Beamer-Theme
  A Beamer Theme of PKU for academic report, thesis and talk.
 # Demo
-<img src="img/demo1.jpg" width="900px" height="448px"/>
+<img src="img/demo1.jpg" width="900px" height="600px"/>
 
 # Overleaf Template
 Coming Soon!
