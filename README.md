@@ -2,7 +2,9 @@
  A Beamer Theme of PKU for academic report, thesis and talk.
 # Demo
 <img src="img/demo1.jpg" >
-
+<img src="img/demo2.jpg" >
+<img src="img/3.jpg" >
+<img src="img/4.jpg" >
 # Overleaf Template
 Coming Soon!
 
