@@ -8,6 +8,7 @@
 
 # Document
  Check out the tutorial in [How_to_do_pku_beamer_theme](How_to_do_pku_beamer_theme.pdf) for details.
+ You should use XeLatex to Compile the beamer to get the theme.
  
 # Plug-in
 - 画表神器 https://www.tablesgenerator.com/
