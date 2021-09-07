@@ -17,7 +17,7 @@
 - Latex 画图画表常用命令 https://en.wikibooks.org/wiki/LaTeX/Floats,_Figures_and_Captions#Tip
  
 # Overleaf Template
-Coming Soon!
+https://www.overleaf.com/latex/templates/pku-beamer-theme/zdnpwpfnkzcc
 
 # Acknowledgements
 This repository is based on [THU-Beamer-Theme](https://github.com/Trinkle23897/THU-Beamer-Theme), and you may refer to it for more details about the code.
