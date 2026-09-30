@@ -1,0 +1,27 @@
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+/.vscode/
+/.idea/
+/.claude/settings.local.json
+
+# Local builds, comparisons, and previews
+/build/
+/output/
+/slide.pdf
+
+# LaTeX intermediate files (keep the tutorial and PDF image assets)
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+*.dvi

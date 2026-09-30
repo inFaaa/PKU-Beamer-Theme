@@ -1,0 +1,5 @@
+interface:
+  display_name: "LaTeX 公式"
+  short_description: "将文字或公式图片转为可编辑 LaTeX，保留符号并处理对齐、编号和断行"
+  default_prompt: "使用 $latex-equations 将我提供的公式转为 LaTeX，保留原意、编号，并标明无法确认的符号。"
+  brand_color: "#800000"

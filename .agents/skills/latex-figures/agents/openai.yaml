@@ -1,0 +1,5 @@
+interface:
+  display_name: "LaTeX 图文排版"
+  short_description: "在 LaTeX 或 Beamer 中排版现有图片，处理分栏、图注与交叉引用"
+  default_prompt: "使用 $latex-figures 将我提供的图片排进当前文档，保留比例并检查图注、引用和页面溢出。"
+  brand_color: "#800000"

@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
 \usepackage{ctex, hyperref}
 \usepackage[T1]{fontenc}
 
@@ -6,6 +6,7 @@
 \usepackage{latexsym,amsmath,xcolor,multicol,booktabs,calligra}
 \usepackage{graphicx,pstricks,listings,stackengine}
 
+% Example metadata: replace these fields with your own report information.
 \author{黄小明}
 \title{PKU Beamer Theme}
 \subtitle{毕业设计开题报告}
@@ -28,6 +29,8 @@
     stringstyle=\color{deepgreen},
     numbers=left,
     numberstyle=\small\color{halfgray},
+    xleftmargin=1.8em,
+    numbersep=0.6em,
     rulesepcolor=\color{red!20!green!20!blue!20},
     frame=shadowbox,
 }
@@ -35,12 +38,12 @@
 
 \begin{document}
 
-\kaishu
+% Beamer's sans-serif body uses the portable CJK font selected by ctex.
 \begin{frame}
     \titlepage
     \begin{figure}[htpb]
         \begin{center}
-            \includegraphics[width=0.2\linewidth]{pic/PKU_logo.png}
+            \includegraphics[width=0.15\linewidth]{pic/PKU_logo.png}
         \end{center}
     \end{figure}
 \end{frame}
@@ -56,7 +59,7 @@
     \begin{itemize}[<+-| alert@+>] % 当然，除了alert，手动在里面插 \pause 也行
         \item 大家都会\LaTeX{}，好多学校都有自己的Beamer主题
         \item 中文支持请选择 Xe\LaTeX{} 编译选项
-        \item Overleaf项目地址位于 \url{https://www.overleaf.com/latex/templates/thu-beamer-theme/vwnqmzndvwyb}，可以直接使用
+        \item Overleaf项目地址位于 \url{https://www.overleaf.com/latex/templates/pku-beamer-theme/zdnpwpfnkzcc}，可以直接使用
         \item GitHub项目地址位于 \url{https://github.com/inFaaa/PKU-Beamer-Theme}，如果有bug或者feature request可以去里面提issue
     \end{itemize}
 \end{frame}
@@ -70,7 +73,7 @@
         \item 有一些 \LaTeX{} 自带的
         \item 有一些Tsinghua的
         \item 本模板来源自 \newline \url{https://www.latexstudio.net/archives/4051.html}
-        \item 但是最初的 \href{http://far.tooold.cn/post/latex/beamertsinghua}{\color{purple}{link}} \cite{origin}已经失效了
+        \item 参考项目：\href{https://github.com/tuna/THU-Beamer-Theme}{\color{purple}{THU Beamer Theme}} \cite{origin}
         \item 这是n+e大佬在16-17年做的一些ppt：\href{https://github.com/Trinkle23897/oi_slides}{\color{purple}{戳我}}
     \end{itemize}
 \end{frame}
@@ -80,11 +83,11 @@
 
 \subsection{美化主题}
 
-\begin{frame}{这一份主题与原始的THU Beamer Theme区别在于}
+\begin{frame}{主题与版式}
     \begin{itemize}
-        \item 顶栏的小点变成一行而不是多行
-        \item 中文采用楷书
-        \item 剩下我改了啥我也忘了……我16年魔改的，都四年过去了（x
+        \item 顶栏仅显示章节名称，页脚合并为一行
+        \item 中文正文采用黑体，保留北大红作为主题色
+        \item 默认使用 16:9 宽屏，仅在大章节切换时显示过渡页
         \item 更多该模板的功能可以参考 \url{https://www.latexstudio.net/archives/4051.html}
         \item 下面列举出了一些Beamer的用法，部分节选自 \url{https://tuna.moe/event/2018/latex/}
     \end{itemize}
@@ -98,9 +101,12 @@
     \end{itemize}
     \begin{table}[h]
         \centering
-        \begin{tabular}{c|c}
+        \small
+        \renewcommand{\arraystretch}{1.1}
+        \begin{tabular*}{0.94\linewidth}{@{\extracolsep{\fill}}cc@{}}
+            \toprule
             Microsoft\textsuperscript{\textregistered}  Word & \LaTeX \\
-            \hline
+            \midrule
             文字处理工具 & 专业排版软件 \\
             容易上手，简单直观 & 容易上手 \\
             所见即所得 & 所见即所想，所想即所得 \\
@@ -110,7 +116,8 @@
             公式排版差强人意 & 尤其擅长公式排版 \\
             二进制格式，兼容性差 & 文本文件，易读、稳定 \\
             付费商业许可 & 自由免费使用 \\
-        \end{tabular}
+            \bottomrule
+        \end{tabular*}
     \end{table}
 \end{frame}
 
@@ -145,8 +152,10 @@
 
 \begin{frame}{图形与分栏}
     % From thuthesis user guide.
-    \begin{minipage}[c]{0.3\linewidth}
-        \psset{unit=0.8cm}
+    \begin{columns}[c,onlytextwidth]
+    \begin{column}{0.44\textwidth}
+        \centering
+        \psset{unit=0.72cm}
         \begin{pspicture}(-1.75,-3)(3.25,4)
             \psline[linewidth=0.25pt](0,0)(0,4)
             \rput[tl]{0}(0.2,2){$\vec e_z$}
@@ -168,47 +177,68 @@
             \psarc{->}{2.1}{90}{112.5}
             \rput[bl](.1,.01){C}
         \end{pspicture}
-    \end{minipage}\hspace{1cm}
-    \begin{minipage}{0.5\linewidth}
-        \medskip
-        %\hspace{2cm}
-        \begin{figure}[h]
-            \centering
-            \includegraphics[height=.4\textheight]{pic/dtmf.pdf}
-        \end{figure}
-    \end{minipage}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\linewidth,height=.66\textheight,keepaspectratio]{pic/dtmf.pdf}
+    \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{\LaTeX{} 常用命令}
-    \begin{exampleblock}{命令}
+    \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.31\textwidth}
+    \begin{exampleblock}{章节与排版}
         \centering
         \footnotesize
-        \begin{tabular}{llll}
-            \cmd{chapter} & \cmd{section} & \cmd{subsection} & \cmd{paragraph} \\
-            章 & 节 & 小节 & 带题头段落 \\\hline
-            \cmd{centering} & \cmd{emph} & \cmd{verb} & \cmd{url} \\
-            居中对齐 & 强调 & 原样输出 & 超链接 \\\hline
-            \cmd{footnote} & \cmd{item} & \cmd{caption} & \cmd{includegraphics} \\
-            脚注 & 列表条目 & 标题 & 插入图片 \\\hline
-            \cmd{label} & \cmd{cite} & \cmd{ref} \\
-            标号 & 引用参考文献 & 引用图表公式等\\\hline
+        \begin{tabular}{@{}ll@{}}
+            \cmd{chapter} & 章 \\
+            \cmd{section} & 节 \\
+            \cmd{subsection} & 小节 \\
+            \cmd{paragraph} & 带题头段落 \\\hline
+            \cmd{centering} & 居中对齐 \\
+            \cmd{emph} & 强调 \\
+            \cmd{verb} & 原样输出 \\
+            \cmd{url} & 超链接 \\
         \end{tabular}
     \end{exampleblock}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+    \begin{exampleblock}{图表与引用}
+        \centering
+        \footnotesize
+        \begin{tabular}{@{}p{.60\linewidth}@{\hspace{.03\linewidth}}p{.37\linewidth}@{}}
+            \cmd{footnote} & 脚注 \\
+            \cmd{item} & 列表条目 \\
+            \cmd{caption} & 标题 \\
+            \cmd{includegraphics} & 插入图片 \\\hline
+            \cmd{label} & 标号 \\
+            \cmd{cite} & 引用文献 \\
+            \cmd{ref} & 交叉引用 \\
+        \end{tabular}
+    \end{exampleblock}
+    \end{column}
+    \begin{column}{0.28\textwidth}
     \begin{exampleblock}{环境}
         \centering
         \footnotesize
-        \begin{tabular}{lll}
-            \env{table} & \env{figure} & \env{equation}\\
-            表格 & 图片 & 公式 \\\hline
-            \env{itemize} & \env{enumerate} & \env{description}\\
-            无编号列表 & 编号列表 & 描述 \\\hline
+        \begin{tabular}{@{}ll@{}}
+            \env{table} & 表格 \\
+            \env{figure} & 图片 \\
+            \env{equation} & 公式 \\\hline
+            \env{itemize} & 无编号列表 \\
+            \env{enumerate} & 编号列表 \\
+            \env{description} & 描述 \\\hline
         \end{tabular}
     \end{exampleblock}
+    \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{\LaTeX{} 环境命令举例}
-    \begin{minipage}{0.5\linewidth}
-\begin{lstlisting}[language=TeX]
+    \begin{columns}[T,onlytextwidth]
+    \begin{column}{0.47\textwidth}
+\begin{lstlisting}[language=TeX,basicstyle=\ttfamily\footnotesize]
 \begin{itemize}
   \item A \item B
   \item C
@@ -217,8 +247,7 @@
   \end{itemize}
 \end{itemize}
 \end{lstlisting}
-    \end{minipage}\hspace{1cm}
-    \begin{minipage}{0.3\linewidth}
+        \medskip
         \begin{itemize}
             \item A
             \item B
@@ -227,34 +256,33 @@
                 \item C-1
             \end{itemize}
         \end{itemize}
-    \end{minipage}
-    \medskip
+    \end{column}
     \pause
-    \begin{minipage}{0.5\linewidth}
-\begin{lstlisting}[language=TeX]
+    \begin{column}{0.47\textwidth}
+\begin{lstlisting}[language=TeX,basicstyle=\ttfamily\footnotesize]
 \begin{enumerate}
   \item 巨佬 \item 大佬
   \item 萌新
   \begin{itemize}
-    \item[n+e] 瑟瑟发抖
+    \item[Infaaa] 瑟瑟发抖
   \end{itemize}
 \end{enumerate}
 \end{lstlisting}
-    \end{minipage}\hspace{1cm}
-    \begin{minipage}{0.3\linewidth}
+        \medskip
         \begin{enumerate}
             \item 巨佬
             \item 大佬
             \item 萌新
             \begin{itemize}
-                \item[n+e] 瑟瑟发抖
+                \item[Infaaa] 瑟瑟发抖
             \end{itemize}
         \end{enumerate}
-    \end{minipage}
+    \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{\LaTeX{} 数学公式}
-    \begin{columns}
+    \begin{columns}[c,onlytextwidth]
         \begin{column}{.55\textwidth}
 \begin{lstlisting}[language=TeX]
 $V = \frac{4}{3}\pi r^3$
@@ -285,26 +313,26 @@ $V = \frac{4}{3}\pi r^3$
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-    \begin{columns}
-        \column{.6\textwidth}
-\begin{lstlisting}[language=TeX]
-    \begin{table}[htbp]
-      \caption{编号与含义}
-      \label{tab:number}
-      \centering
-      \begin{tabular}{cl}
-        \toprule
-        编号 & 含义 \\
-        \midrule
-        1 & 4.0 \\
-        2 & 3.7 \\
-        \bottomrule
-      \end{tabular}
-    \end{table}
-    公式~(\ref{eq:vsphere}) 的
-    编号与含义请参见
-    表~\ref{tab:number}。
+\begin{frame}[fragile]{\LaTeX{} 表格与交叉引用}
+    \begin{columns}[c,onlytextwidth]
+        \column{.56\textwidth}
+\begin{lstlisting}[language=TeX,basicstyle=\ttfamily\footnotesize]
+\begin{table}[htbp]
+  \caption{编号与含义}
+  \label{tab:number}
+  \centering
+  \begin{tabular}{cl}
+    \toprule
+    编号 & 含义 \\
+    \midrule
+    1 & 4.0 \\
+    2 & 3.7 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+公式~(\ref{eq:vsphere}) 的
+编号与含义请参见
+表~\ref{tab:number}。
 \end{lstlisting}
         \column{.4\textwidth}
         \begin{table}[htpb]
@@ -322,6 +350,8 @@ $V = \frac{4}{3}\pi r^3$
 \end{frame}
 
 \begin{frame}{作图}
+    \begin{columns}[c,onlytextwidth]
+    \begin{column}{0.66\textwidth}
     \begin{itemize}
         \item 矢量图 eps, ps, pdf
         \begin{itemize}
@@ -329,17 +359,21 @@ $V = \frac{4}{3}\pi r^3$
             \item Xfig, Dia, Visio, Inkscape $\ldots$
             \item Matlab / Excel 等保存为 pdf
         \end{itemize}
-        \item 标量图 png, jpg, tiff $\ldots$
+        \item 位图 png, jpg, tiff $\ldots$
         \begin{itemize}
             \item 提高清晰度，避免发虚
             \item 应尽量避免使用
         \end{itemize}
     \end{itemize}
+    \end{column}
+    \begin{column}{0.28\textwidth}
     \begin{figure}[htpb]
         \centering
-        \includegraphics[width=0.2\linewidth]{pic/PKU_logo.png}
-        \caption{这个校徽就是矢量图}
+        \includegraphics[width=0.8\linewidth]{pic/PKU_logo.png}
+        \caption{PNG 校徽示例}
     \end{figure}
+    \end{column}
+    \end{columns}
 \end{frame}
 
 \section{计划进度}
@@ -347,7 +381,7 @@ $V = \frac{4}{3}\pi r^3$
     \begin{itemize}
         \item 一月：完成文献调研
         \item 二月：复现并评测各种Beamer主题美观程度
-        \item 三、四月：美化THU Beamer主题
+        \item 三、四月：美化PKU Beamer主题
         \item 五月：论文撰写
     \end{itemize}
 \end{frame}

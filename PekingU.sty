@@ -1,46 +1,58 @@
 \mode<presentation>
 
-\newif\ifbeamer@secheader
-\beamer@secheaderfalse
-
-%\DeclareOptionBeamer{secheader}{\beamer@secheadertrue}
 \ProcessOptionsBeamer
 
-\useoutertheme[footline=authorinstitutetitle]{smoothbars}
-\makeatletter % [add curpage/total page at the bottom](http://tex.stackexchange.com/questions/100838/beamer-dresden-theme-miniframes-appeareance-and-frame-number-insertion)
+\useoutertheme{smoothbars}
+% Keep a single row of clickable section names, without mini-frame dots.
+\setbeamertemplate{headline}{%
+  \usebeamerfont{section in head/foot}%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.6ex,dp=1.1ex]{section in head/foot}%
+    \insertsectionnavigationhorizontal{\paperwidth}{}{}%
+  \end{beamercolorbox}%
+}
+% Bleed the headline color past the page edge to avoid a white hairline
+% from PDF shading/page-size rounding. The zero-height box preserves layout.
+\addtobeamertemplate{headline}{%
+  \vbox to 0pt{%
+    \vskip-1pt%
+    \hbox{\usebeamercolor[bg]{section in head/foot}\rule{\paperwidth}{2pt}}%
+    \vss%
+  }%
+  \nointerlineskip%
+}{}
 \newcommand{\frameofframes}{/}
 \newcommand{\setframeofframes}[1]{\renewcommand{\frameofframes}{#1}}
-\setbeamertemplate{footline} 
-  {%
-    \begin{beamercolorbox}[colsep=1.5pt]{upper separation line foot}
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
-      leftskip=.3cm,rightskip=.3cm plus1fil]{author in head/foot}%
-      \leavevmode{\usebeamerfont{author in head/foot}\insertshortauthor}%
-      \hfill%
-      {\usebeamerfont{institute in head/foot}\usebeamercolor[fg]{institute in head/foot}\insertshortinstitute}%
+% Short author/title forms can be supplied through standard Beamer commands.
+% Keep the original two reds side by side without increasing footer height.
+\setbeamertemplate{footline}{%
+  \usebeamerfont{footline}%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.6ex,dp=1.1ex,%
+      leftskip=.3cm,rightskip=.3cm]{author in head/foot}%
+      \insertshortauthor%
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[ht=2.5ex,dp=1.125ex,%
-      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
-      {\usebeamerfont{title in head/foot}\insertshorttitle}%
-      \hfill%
-      {\usebeamerfont{frame number}\usebeamercolor[fg]{frame number}\insertframenumber~\frameofframes~\inserttotalframenumber}
+    \begin{beamercolorbox}[wd=.75\paperwidth,ht=2.6ex,dp=1.1ex,%
+      leftskip=.3cm,rightskip=.3cm]{title in head/foot}%
+      \hfill\insertshorttitle\hfill%
+      \insertframenumber~\frameofframes~\inserttotalframenumber%
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[colsep=1.5pt]{lower separation line foot}
-    \end{beamercolorbox}
-  }
-\makeatother
+  }%
+}
 
 \useinnertheme{circles}
 
-%\useoutertheme{default}
-%\useinnertheme[shadow=true]{rounded}
-
-\xdefinecolor{peaking}{rgb}{0.5,0.0,0.0}  %RGB#820010
-\setbeamercolor{footline}{bg=peaking}
+\xdefinecolor{peaking}{rgb}{0.5,0.0,0.0}  % RGB #800000
+\setbeamercolor{author in head/foot}{parent=palette primary}
+\setbeamercolor{title in head/foot}{parent=palette quaternary}
 \setbeamercolor{frametitle}{bg=peaking,fg=white}
 \setbeamercolor{title}{bg=peaking}
 \setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{section in head/foot}{size=\scriptsize}
+\setbeamerfont{footline}{size=\scriptsize}
+\setbeamertemplate{section in head/foot shaded}[default][70]
+% The compact headline has no separate subsection row.
+\setbeamercolor{subsection in head/foot}{parent=section in head/foot}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{bibliography item}[text]
 \setbeamertemplate{caption}[numbered]
@@ -49,10 +61,9 @@
 \setbeamercolor{palette secondary}{use=structure,fg=white,bg=structure.fg!75!black}
 \setbeamercolor{palette tertiary}{use=structure,fg=white,bg=structure.fg!50!black}
 \setbeamercolor{palette quaternary}{fg=white,bg=structure.fg!50!black}
-%\setbeamercolor*{sidebar}{use=structure,bg=structure.fg}
 \setbeamercolor{titlelike}{parent=palette primary}
 
-%% try
+% Blocks and sidebar colors.
 \setbeamercolor{block title}{bg=peaking,fg=white}
 \setbeamercolor*{block title example}{use={normal text,example text},bg=white,fg=peaking}
 \setbeamercolor{fine separation line}{}
@@ -61,24 +72,26 @@
 \setbeamercolor{palette sidebar quaternary}{use=structure,fg=structure.fg}
 \setbeamercolor{palette sidebar secondary}{use=structure,fg=structure.fg}
 \setbeamercolor{palette sidebar tertiary}{use=normal text,fg=normal text.fg}
-%\setbeamercolor{palette sidebar quaternary}{fg=white}
 \setbeamercolor{section in sidebar}{fg=brown}
-\setbeamercolor{section in sidebar shaded}{fg=grey}
+\setbeamercolor{section in sidebar shaded}{fg=gray}
 \setbeamercolor{separation line}{}
 \setbeamercolor{sidebar}{bg=peaking}
 \setbeamercolor{sidebar}{parent=palette primary}
 \setbeamercolor{structure}{fg=peaking}
 \setbeamercolor{subsection in sidebar}{fg=brown}
-\setbeamercolor{subsection in sidebar shaded}{fg=grey}
-\AtBeginSection[]{
-	\begin{frame}
-		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
-	\end{frame}
+\setbeamercolor{subsection in sidebar shaded}{fg=gray}
+% One short transition per section; subsections do not interrupt the talk.
+\setbeamercolor{section title}{fg=peaking,bg=white}
+\setbeamerfont{section title}{size=\LARGE,series=\bfseries}
+\setbeamertemplate{section page}{%
+  \centering
+  \usebeamerfont{section title}\usebeamercolor[fg]{section title}%
+  \insertsectionnumber\quad\insertsection\par
 }
-\AtBeginSubsection[]{
-	\begin{frame}
-		\tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
-	\end{frame}
+\AtBeginSection[]{%
+  \begin{frame}[plain,noframenumbering]
+    \sectionpage
+  \end{frame}
 }
 
 \mode

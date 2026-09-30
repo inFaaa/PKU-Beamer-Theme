@@ -1,0 +1,5 @@
+interface:
+  display_name: "BibTeX 文献"
+  short_description: "根据题名、DOI 或链接核对文献元数据，整理 BibTeX 并保留引用键"
+  default_prompt: "使用 $latex-bibtex 核对我指定的参考文献，保留引用键并列出来源与未验证字段。"
+  brand_color: "#800000"

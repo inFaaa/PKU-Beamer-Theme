@@ -1,0 +1,5 @@
+interface:
+  display_name: "LaTeX 表格"
+  short_description: "将 CSV 或 Markdown 转为可编辑 LaTeX 表格，并保留原始数据与精度"
+  default_prompt: "使用 $latex-tables 将我提供的数据排成 LaTeX 表格，保留精度并适配当前页面。"
+  brand_color: "#800000"
