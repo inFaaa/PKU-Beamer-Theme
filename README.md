@@ -2,7 +2,7 @@
 
 北京大学 Beamer 主题，适用于学术报告、毕业答辩和日常分享。
 
-[查看示例与教程 PDF](How_to_do_pku_beamer_theme.pdf) · [Overleaf 模板](https://www.overleaf.com/latex/templates/pku-beamer-theme/zdnpwpfnkzcc)
+[查看示例与教程 PDF](How_to_do_pku_beamer_theme.pdf) · [Overleaf 模板](https://www.overleaf.com/latex/templates/pku-beamer-theme/zdnpwpfnkzcc) (Old Version)
 
 当前示例采用 **16:9 宽屏、中文黑体正文、单行章节导航和双色红色页脚**，保留标题渐变与阴影。已修复顶栏上沿的白边；仅在章节切换时显示简短过渡页，小节不重复插入目录，过渡页不计入页脚页数。
 
